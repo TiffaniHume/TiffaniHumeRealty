@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Verified | Tiffani Hume Realty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("{{ url_for('static', filename='luxury.png') }}") no-repeat center center;
+      background-size: cover;
+      overflow: hidden;
+      transition: background-position 0.2s ease-out;
+    }
+
+    /* Gradient overlay for warmth */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(247,244,239,0.9) 10%, rgba(227,199,193,0.6) 60%, rgba(216,214,209,0.5) 100%);
+      backdrop-filter: blur(3px);
+      z-index: 1;
+    }
+
+    .success-box {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.88);
+      padding: 3rem 3.5rem;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(8px);
+      animation: fadeInUp 1.2s ease-out;
+      max-width: 620px;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-box h1 {
+      font-size: 2rem;
+      color: #3a3a3a;
+      margin-bottom: 1rem;
+      letter-spacing: 1px;
+    }
+
+    .success-box p {
+      color: #555;
+      line-height: 1.6;
+      font-size: 1.05rem;
+      margin-bottom: 1.3rem;
+    }
+
+    .signature {
+      font-style: italic;
+      color: #8c6f5b;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-container {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .home-btn, .listings-btn {
+      display: inline-block;
+      position: relative;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    /* Shimmer animation */
+    .home-btn::before,
+    .listings-btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75px;
+      width: 50px;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.65), rgba(255,255,255,0));
+      transform: skewX(-20deg);
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+
+    .home-btn:hover::before,
+    .listings-btn:hover::before {
+      left: 130%;
+      opacity: 1;
+    }
+
+    /* Home Button (solid gold) */
+    .home-btn {
+      background: linear-gradient(90deg, #d2bfa7, #c6a68a);
+      color: #fff;
+    }
+
+    .home-btn:hover {
+      background: linear-gradient(90deg, #c6a68a, #b28f78);
+      transform: translateY(-2px);
+    }
+
+    /* Listings Button (gold outline with glow) */
+    .listings-btn {
+      background: #fff;
+      border: 2px solid #c6a68a;
+      color: #7a5a48;
+    }
+
+    .listings-btn:hover {
+      background: #fdfaf7;
+      color: #6a4c3e;
+      transform: translateY(-2px);
+      box-shadow: 0 0 14px 2px rgba(198,166,138,0.5);
+    }
+
+    .icon {
+      font-size: 2.5rem;
+      color: #c6a68a;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .success-box {
+        width: 85%;
+        padding: 2rem;
+      }
+      .btn-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="success-box">
+    <div class="icon">✅</div>
+    <h1>Thank You for Verifying Your Email!</h1>
+    <p>
+      We really want to get it right. Based on client demand, our agent will process your free home value report within 30 minutes of receiving it and will send you a message confirming that she’s working on your request.
+    </p>
+    <p>
+      We appreciate your patience and look forward to helping you discover your property’s true value.
+    </p>
+    <div class="signature">— The Hume Team</div>
+
+    <div class="btn-container">
+      <a href="{{ url_for('index') }}" class="home-btn">🏠 Return Home</a>
+      <a href="https://tiffanihume.com/search/#!/defaultsearch:true" class="listings-btn" target="_blank">🔍 Check Out Listings</a>
+    </div>
+  </div>
+
+  <script>
+    // Parallax mouse movement effect
+    document.addEventListener("mousemove", (e) => {
+      const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+      const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
+      document.body.style.backgroundPosition = `${50 + moveX}% ${50 + moveY}%`;
+    });
+  </script>
+</body>
+</html>
