@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tiffani Hume Realty | Free Home Value Estimate</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <style>
+        /* === Full background image setup === */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: url('{{ url_for("static", filename="background.png") }}') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        /* === Floating form container (glass effect) === */
+        .form-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            padding: 2rem;
+            border-radius: 15px;
+            width: 350px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 70px;
+        }
+
+        button {
+            background-color: #c5a46d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #b58c4d;
+            box-shadow: 0 0 10px rgba(197, 164, 109, 0.5);
+        }
+
+        /* === Flash message area === */
+        .flash {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* === Responsive Design === */
+        @media (max-width: 600px) {
+            .form-container {
+                width: 90%;
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Get Your Free Customized Home Value Estimate, Today! </h2>
+        <p> Realtor Tiffani Hume, CA DRE 02218641</p>
+        <p> California Residents Only</p>
+
+        <form method="POST" action="{{ url_for('submit') }}">
+            <input type="text" name="name" placeholder="Your Name (Required)" required><br>
+            <input type="email" name="email" placeholder="Your Email (Required)" required><br>
+            <input type="tel" name="phone" placeholder="Your Phone (Optional)"><br>
+            <input type="text" name="address" placeholder="Property Address (Required)" required><br>
+            <textarea name="message" placeholder="Tell us about your home (optional)"></textarea><br>
+
+            <div class="g-recaptcha" data-sitekey="6LdXvPMrAAAAABC0x0AeuHQwq8UpZQ4Sz02o8MWm"></div>
+            <br>
+            <button type="submit">Request Estimate</button>
+        </form>
+
+        <!-- Flask flash messages -->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+    </div>
+</body>
+</html>
