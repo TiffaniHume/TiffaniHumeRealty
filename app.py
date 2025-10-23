@@ -9,7 +9,8 @@ import openpyxl
 from openpyxl.utils import get_column_letter
 
 
-app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)app.secret_key = os.environ.get("SECRET_KEY", "fallback_dev_key")
+app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
+app.secret_key = os.environ.get("SECRET_KEY", "fallback_dev_key")
 
 # =======================
 # EMAIL CONFIGURATION
